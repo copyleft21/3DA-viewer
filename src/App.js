@@ -1,15 +1,12 @@
-import './App.css';
-import Container from './components/Container';
-import Logo from './components/Logo';
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import SinglePlan from "./components/SinglePlan";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Logo />
-        <Container />
-      </header>
-    </div>
+    <BrowserRouter>
+        <Route component={SinglePlan} path="/:slug" />
+    </BrowserRouter>
   );
 }
 

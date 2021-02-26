@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components'
 
 
-function Container() {
+function Container(props) {
     return (
             <Wrapper>
-                <p>Hello World!</p>
+      {props.children}
             </Wrapper>
     );
 }
