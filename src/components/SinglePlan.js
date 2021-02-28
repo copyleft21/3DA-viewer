@@ -16,6 +16,7 @@ function SinglePlan() {
           `*[slug.current == $slug]{
             caseNum,
             patientName,
+            front,
             slug
          }`,
           { slug }
