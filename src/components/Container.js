@@ -17,7 +17,7 @@ const Wrapper = styled.section`
     -webkit-box-shadow: #e1e6f8 0 2px 20px;
     box-shadow: #e1e6f8 0 2px 20px;
     width: 960px;
-    height: 70vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     text-align: center;

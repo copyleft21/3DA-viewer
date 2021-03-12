@@ -30,16 +30,62 @@ const activeIcons = {
     lowerActive
 }
 
-const Views = () => {
-    return (
-        <ViewFlex>
-            <ViewButton activeIcon={activeIcons.upperActive} disabledIcon={disabledIcons.upperDisabled} name="Upper" />
-            <ViewButton activeIcon={activeIcons.leftActive} disabledIcon={disabledIcons.leftDisabled} name="Left" />
-            <ViewButton activeIcon={activeIcons.frontActive} disabledIcon={disabledIcons.frontDisabled} name="Front" />
-            <ViewButton activeIcon={activeIcons.rightActive} disabledIcon={disabledIcons.rightDisabled} name="Right" />
-            <ViewButton activeIcon={activeIcons.lowerActive} disabledIcon={disabledIcons.lowerDisabled} name="Lower" />
-        </ViewFlex>
-    )
+
+const Views = ({currentView, viewChanger}) => {
+        if (currentView === 'Upper') {
+            return (
+                <ViewFlex>
+                <ViewButton key='upper' isActive activeIcon={activeIcons.upperActive} disabledIcon={disabledIcons.upperDisabled} name="Upper" viewChanger={viewChanger} />
+                <ViewButton key='left' activeIcon={activeIcons.leftActive} disabledIcon={disabledIcons.leftDisabled} name="Left" viewChanger={viewChanger} />
+                <ViewButton key='front'  activeIcon={activeIcons.frontActive} disabledIcon={disabledIcons.frontDisabled} name="Front" viewChanger={viewChanger} />
+                <ViewButton key='right' activeIcon={activeIcons.rightActive} disabledIcon={disabledIcons.rightDisabled} name="Right" viewChanger={viewChanger} />
+                <ViewButton key='lower' activeIcon={activeIcons.lowerActive} disabledIcon={disabledIcons.lowerDisabled} name="Lower" viewChanger={viewChanger} />
+            </ViewFlex>
+            )
+        }
+        else if (currentView === 'Left') {
+            return (
+                <ViewFlex>
+                <ViewButton key='upper' activeIcon={activeIcons.upperActive} disabledIcon={disabledIcons.upperDisabled} name="Upper" viewChanger={viewChanger} />
+                <ViewButton key='left' isActive activeIcon={activeIcons.leftActive} disabledIcon={disabledIcons.leftDisabled} name="Left" viewChanger={viewChanger} />
+                <ViewButton key='front'  activeIcon={activeIcons.frontActive} disabledIcon={disabledIcons.frontDisabled} name="Front" viewChanger={viewChanger} />
+                <ViewButton key='right' activeIcon={activeIcons.rightActive} disabledIcon={disabledIcons.rightDisabled} name="Right" viewChanger={viewChanger} />
+                <ViewButton key='lower' activeIcon={activeIcons.lowerActive} disabledIcon={disabledIcons.lowerDisabled} name="Lower" viewChanger={viewChanger} />
+            </ViewFlex>
+            )
+        }
+        else if (currentView === 'Front') {
+            return (
+                <ViewFlex>
+                <ViewButton key='upper' activeIcon={activeIcons.upperActive} disabledIcon={disabledIcons.upperDisabled} name="Upper" viewChanger={viewChanger} />
+                <ViewButton key='left' activeIcon={activeIcons.leftActive} disabledIcon={disabledIcons.leftDisabled} name="Left" viewChanger={viewChanger} />
+                <ViewButton key='front' isActive activeIcon={activeIcons.frontActive} disabledIcon={disabledIcons.frontDisabled} name="Front"  viewChanger={viewChanger}/>
+                <ViewButton key='right' activeIcon={activeIcons.rightActive} disabledIcon={disabledIcons.rightDisabled} name="Right" viewChanger={viewChanger} />
+                <ViewButton key='lower' activeIcon={activeIcons.lowerActive} disabledIcon={disabledIcons.lowerDisabled} name="Lower"  viewChanger={viewChanger}/>
+            </ViewFlex>
+            )
+        } else if (currentView === 'Right') {
+            return (
+                <ViewFlex>
+                <ViewButton key='upper' activeIcon={activeIcons.upperActive} disabledIcon={disabledIcons.upperDisabled} name="Upper"  viewChanger={viewChanger} />
+                <ViewButton key='left' activeIcon={activeIcons.leftActive} disabledIcon={disabledIcons.leftDisabled} name="Left" viewChanger={viewChanger} />
+                <ViewButton key='front' activeIcon={activeIcons.frontActive} disabledIcon={disabledIcons.frontDisabled} name="Front" viewChanger={viewChanger} />
+                <ViewButton key='right' isActive activeIcon={activeIcons.rightActive} disabledIcon={disabledIcons.rightDisabled} name="Right"  viewChanger={viewChanger}/>
+                <ViewButton key='lower' activeIcon={activeIcons.lowerActive} disabledIcon={disabledIcons.lowerDisabled} name="Lower" viewChanger={viewChanger} />
+            </ViewFlex>
+            )
+        } else if (currentView === 'Lower') {
+            return (
+                <ViewFlex>
+                <ViewButton key='upper' activeIcon={activeIcons.upperActive} disabledIcon={disabledIcons.upperDisabled} name="Upper" viewChanger={viewChanger} />
+                <ViewButton key='left' activeIcon={activeIcons.leftActive} disabledIcon={disabledIcons.leftDisabled} name="Left" viewChanger={viewChanger} />
+                <ViewButton key='front' activeIcon={activeIcons.frontActive} disabledIcon={disabledIcons.frontDisabled} name="Front"  viewChanger={viewChanger}/>
+                <ViewButton key='right' activeIcon={activeIcons.rightActive} disabledIcon={disabledIcons.rightDisabled} name="Right" viewChanger={viewChanger} />
+                <ViewButton key='lower' isActive activeIcon={activeIcons.lowerActive} disabledIcon={disabledIcons.lowerDisabled} name="Lower" viewChanger={viewChanger} />
+            </ViewFlex>
+            )
+        }
+
 }
 
 const ViewFlex = styled.div`

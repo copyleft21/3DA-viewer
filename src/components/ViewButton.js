@@ -2,14 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const ViewButton = ({activeIcon, disabledIcon, name}) => {
-    return (
-        <ViewOption>
-            <ViewIcon src={disabledIcon} />
-            <ViewLabel>{name}</ViewLabel>
-        </ViewOption>
-
-    )
+const ViewButton = ({isActive, activeIcon, disabledIcon, name, viewChanger}) => {
+    
+    if (isActive) {
+        return (
+                <ActiveOption>
+                    <ViewIcon src={activeIcon} />
+                    <ViewLabel>{name}</ViewLabel>
+                </ActiveOption>
+        )} else {
+            return (
+                <InActiveOption onClick={() => viewChanger(name)} >
+                     <ViewIcon src={disabledIcon}  />
+                    <ViewLabel>{name}</ViewLabel>
+                </InActiveOption>
+            )}
 }
 
 const ViewIcon = styled.img`
@@ -22,14 +29,15 @@ const ViewIcon = styled.img`
 `
 
 const ViewLabel = styled.p`
-font-size: 14px;
+    font-size: 14px;
     color: #324858;
+    margin: 0
 `
 
-const ViewOption = styled.div`
+const InActiveOption = styled.div`
     width: 95px;
     height: 95px;
-    border-radius: 50%;
+    border-radius: 10px;
     margin-left: .4vw;
     margin-right: .4vw;
     cursor: pointer;
@@ -45,5 +53,26 @@ const ViewOption = styled.div`
         height: auto;
   }
 `
+const ActiveOption = styled.div`
+    width: 95px;
+    height: 95px;
+    border-radius: 10px;
+    margin-left: .4vw;
+    margin-right: .4vw;
+    background-color: #e0f0f8;
+    z-index: 1020;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    @media (max-width: 768px) {
+        width: 15vw;
+        height: auto;
+  }
+`
+
+
+
 
 export default ViewButton;
