@@ -3,9 +3,11 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components'
 import sanityClient from "../client.js";
 import Container from './Container';
+import ReactPlayer from 'react-player'
 //import JawViewBox from './JawViewsBox.js';
 import Logo from './Logo';
 import Views from './Views.js';
+import PlayerButtons from './PlayerButtons.js';
 
 
 function SinglePlan() {
@@ -62,9 +64,13 @@ function SinglePlan() {
       <Container>
       <Views currentView={view} viewChanger={viewChanger} />
       {console.log(view)}
+      <VideoContainer>
+      <ReactPlayer controls={false} url={planData.sequence.front.asset.url} />
+      </VideoContainer>
       {/*<VideoView source={planData.sequence.front.asset.url} />
       <ImagePlan src={planData.front[0].asset.url} alt="f" />
       <JawViewBox />*/}
+      <PlayerButtons />
       </Container>
     </Content>
     );
@@ -80,6 +86,14 @@ height: auto;
   }
 `
 */
+
+const VideoContainer = styled.div`
+height: 400px;
+display: flex; 
+flex-direction: column;
+align-items: center;
+justify-content: center;
+`
 
 const Content = styled.div`
   text-align: center;

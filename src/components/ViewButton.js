@@ -50,7 +50,7 @@ const InActiveOption = styled.div`
     justify-content: center;
     @media (max-width: 768px) {
         width: 15vw;
-        height: auto;
+        height: 15vw;
   }
 `
 const ActiveOption = styled.div`
@@ -68,7 +68,7 @@ const ActiveOption = styled.div`
     justify-content: center;
     @media (max-width: 768px) {
         width: 15vw;
-        height: auto;
+        height: 15vw;
   }
 `
 
