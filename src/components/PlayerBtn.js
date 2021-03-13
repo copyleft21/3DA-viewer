@@ -4,7 +4,9 @@ import styled from 'styled-components'
 
 const PlayerBtn = ({playerIcn}) => {
     return (
-        <Flex>
+        <Flex onClick ={() => {
+            console.log('I love you')
+            }}>
             <ViewIcon src={playerIcn} />  
         </Flex>
     )
@@ -16,6 +18,7 @@ flex-direction: column;
 text-align: center; 
 align-items: center;
 justify-content: center;
+cursor: pointer;
 //width: 25%;
 `
 

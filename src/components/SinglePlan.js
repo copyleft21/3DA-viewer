@@ -56,6 +56,21 @@ function SinglePlan() {
       setView(viewName)
     }
 
+
+    let videoSrc;
+    
+    if (view === 'Front') {
+      videoSrc = planData.sequence.front.asset.url;
+    } else if (view === 'Right') {
+      videoSrc = planData.sequence.right.asset.url;
+    } else if (view === 'Left') {
+      videoSrc = planData.sequence.left.asset.url;
+    } else if (view === 'Upper') {
+      videoSrc = planData.sequence.upper.asset.url;
+    } else if (view === 'Lower') {
+      videoSrc = planData.sequence.lower.asset.url;
+    }
+
     
     return (
     <Content>
@@ -63,10 +78,11 @@ function SinglePlan() {
       <p>{planData.patientName}</p>
       <Container>
       <Views currentView={view} viewChanger={viewChanger} />
-      {console.log(view)}
+      
       <VideoContainer>
-      <ReactPlayer controls={false} url={planData.sequence.front.asset.url} />
+        <ReactPlayer controls={false} url={videoSrc} width="100%" height="100%" />
       </VideoContainer>
+      
       {/*<VideoView source={planData.sequence.front.asset.url} />
       <ImagePlan src={planData.front[0].asset.url} alt="f" />
       <JawViewBox />*/}
@@ -89,10 +105,15 @@ height: auto;
 
 const VideoContainer = styled.div`
 height: 400px;
+width: 70%;
 display: flex; 
 flex-direction: column;
 align-items: center;
 justify-content: center;
+@media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+  }
 `
 
 const Content = styled.div`

@@ -20,10 +20,8 @@ const PlayerButtons = () => {
     return (
         <Flex>
            <PlayerBtn playerIcn={playerIcons.rewind}  />
-           <PlayerBtn playerIcn={playerIcons.play}  />
+           <PlayerBtn playerIcn={playerIcons.play} />
            <PlayerBtn playerIcn={playerIcons.forward}  />
-
-
         </Flex>
     )
 }

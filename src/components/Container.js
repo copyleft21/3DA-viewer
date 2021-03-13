@@ -23,8 +23,8 @@ const Wrapper = styled.section`
     text-align: center;
     align-items: center;
     justify-content: space-around;
-    @media (max-width: 768px) {
-        max-width: 100vw;
+    @media (max-width: 960px) {
+        width: 100vw;
         height: auto;
   }
 `
