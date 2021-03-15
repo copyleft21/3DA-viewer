@@ -2,14 +2,30 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-const PlayerBtn = ({playerIcn, togglePlay}) => {
+const PlayerBtn = ({playerIcn, togglePlay, type, seekToStart, seekToEnd, seekOneSecBackward, seekOneSecForward}) => {
     return (
+        <div>
         <Flex onClick ={() => {
-            console.log('I love you');
-            togglePlay();
+            if (type === 'start') {
+                seekToStart()
+                console.log('I love you start');
+            } else if (type === 'play') {
+                console.log('I love you play');
+                togglePlay();
+            } else if (type === 'end') {
+                seekToEnd()
+                console.log('I love you end');
+            } else if (type === 'rewind') {
+                seekOneSecBackward()
+                console.log('I love you rewind');
+            } else if (type === 'forward') {
+                seekOneSecForward()
+                console.log('I love you forward');
+            }
             }}>
             <ViewIcon src={playerIcn} />  
         </Flex>
+        </div>
     )
 }
 

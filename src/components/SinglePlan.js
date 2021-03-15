@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components'
 import sanityClient from "../client.js";
@@ -16,6 +16,7 @@ function SinglePlan() {
     const { slug } = useParams();
     const [view, setView] = useState('Front');
     const [isPlaying, setIsPlaying] = useState(false);
+    const player = useRef();
     useEffect(() => {
       sanityClient
         .fetch(
@@ -71,12 +72,31 @@ function SinglePlan() {
       videoSrc = planData.sequence.lower.asset.url;
     }
 
-    console.log(({isPlaying}))
-
     const togglePlay = () => {
       setIsPlaying(!isPlaying)
     }
-    
+
+    const seekToStart = () => {
+      setIsPlaying(false)
+      player.current.seekTo(0);
+    }
+    const seekToEnd = () => {
+      setIsPlaying(false)
+      player.current.seekTo(1, 'fraction');
+    }
+
+    const seekOneSecForward = () => {
+      setIsPlaying(false)
+      const currentTime = player.current.getCurrentTime()
+      player.current.seekTo(currentTime + 1 , 'seconds');
+    }
+
+    const seekOneSecBackward = () => {
+      setIsPlaying(false)
+      const currentTime = player.current.getCurrentTime()
+      player.current.seekTo(currentTime - 1, 'seconds');
+    }
+
     return (
     <Content>
       <Logo />
@@ -84,7 +104,15 @@ function SinglePlan() {
       <Container>
       <Views currentView={view} viewChanger={viewChanger} />
       <VideoContainer>
-        <ReactPlayer playing={isPlaying} controls={false} url={videoSrc} width="100%" height="100%" />
+        <ReactPlayer
+         ref={player}
+         playing={isPlaying} 
+         controls={false} 
+         onEnded={() => setIsPlaying(false)} 
+         url={videoSrc} 
+
+         width="100%" height="100%"
+          />
       </VideoContainer>
       
       {/*
@@ -92,7 +120,14 @@ function SinglePlan() {
       <ImagePlan src={planData.front[0].asset.url} alt="f" />
       */}
 
-      <PlayerButtons onPlayClick={togglePlay} />
+      <PlayerButtons 
+      onPlayClick={togglePlay}
+      playing={isPlaying}
+      seekToStart={seekToStart}
+      seekToEnd={seekToEnd}
+      seekOneSecForward={seekOneSecForward}
+      seekOneSecBackward={seekOneSecBackward}
+      />
       </Container>
     </Content>
     );
