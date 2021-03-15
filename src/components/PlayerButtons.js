@@ -16,11 +16,11 @@ const playerIcons = {
     rewind,
 }
 
-const PlayerButtons = () => {
+const PlayerButtons = ({onPlayClick}) => {
     return (
         <Flex>
            <PlayerBtn playerIcn={playerIcons.rewind}  />
-           <PlayerBtn playerIcn={playerIcons.play} />
+           <PlayerBtn togglePlay={onPlayClick} playerIcn={playerIcons.play} />
            <PlayerBtn playerIcn={playerIcons.forward}  />
         </Flex>
     )

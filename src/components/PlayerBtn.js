@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-const PlayerBtn = ({playerIcn}) => {
+const PlayerBtn = ({playerIcn, togglePlay}) => {
     return (
         <Flex onClick ={() => {
-            console.log('I love you')
+            console.log('I love you');
+            togglePlay();
             }}>
             <ViewIcon src={playerIcn} />  
         </Flex>

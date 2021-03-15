@@ -15,7 +15,7 @@ function SinglePlan() {
     //const [imageIndex, setImageIndex] = useState(0);
     const { slug } = useParams();
     const [view, setView] = useState('Front');
-
+    const [isPlaying, setIsPlaying] = useState(false);
     useEffect(() => {
       sanityClient
         .fetch(
@@ -71,6 +71,11 @@ function SinglePlan() {
       videoSrc = planData.sequence.lower.asset.url;
     }
 
+    console.log(({isPlaying}))
+
+    const togglePlay = () => {
+      setIsPlaying(!isPlaying)
+    }
     
     return (
     <Content>
@@ -78,15 +83,16 @@ function SinglePlan() {
       <p>{planData.patientName}</p>
       <Container>
       <Views currentView={view} viewChanger={viewChanger} />
-      
       <VideoContainer>
-        <ReactPlayer controls={false} url={videoSrc} width="100%" height="100%" />
+        <ReactPlayer playing={isPlaying} controls={false} url={videoSrc} width="100%" height="100%" />
       </VideoContainer>
       
-      {/*<VideoView source={planData.sequence.front.asset.url} />
+      {/*
+      <VideoView source={planData.sequence.front.asset.url} />
       <ImagePlan src={planData.front[0].asset.url} alt="f" />
-      <JawViewBox />*/}
-      <PlayerButtons />
+      */}
+
+      <PlayerButtons onPlayClick={togglePlay} />
       </Container>
     </Content>
     );
