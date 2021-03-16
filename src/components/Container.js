@@ -23,6 +23,7 @@ const Wrapper = styled.section`
     text-align: center;
     align-items: center;
     justify-content: space-around;
+    padding: 2rem;
     @media (max-width: 960px) {
         width: 100vw;
         height: auto;

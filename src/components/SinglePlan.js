@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import sanityClient from "../client.js";
 import Container from './Container';
 import ReactPlayer from 'react-player'
-//import JawViewBox from './JawViewsBox.js';
+import JawViewBox from './JawViewsBox.js';
 import Logo from './Logo';
 import Views from './Views.js';
 import PlayerButtons from './PlayerButtons.js';
@@ -56,6 +56,9 @@ function SinglePlan() {
     const viewChanger = (viewName) => {
       setView(viewName)
     }
+    
+    const upperAligners = planData.upperCount;
+    const lowerAligners = planData.lowerCount;
 
 
     let videoSrc;
@@ -100,9 +103,11 @@ function SinglePlan() {
     return (
     <Content>
       <Logo />
-      <p>{planData.patientName}</p>
+      {/* <p>Patient Name: {planData.patientName}</p> */}
       <Container>
+      <PatientName>Patient Name: {planData.patientName}</PatientName>
       <Views currentView={view} viewChanger={viewChanger} />
+      
       <VideoContainer>
         <ReactPlayer
          ref={player}
@@ -128,6 +133,7 @@ function SinglePlan() {
       seekOneSecForward={seekOneSecForward}
       seekOneSecBackward={seekOneSecBackward}
       />
+      <JawViewBox upper={upperAligners} lower={lowerAligners} />
       </Container>
     </Content>
     );
@@ -144,6 +150,12 @@ height: auto;
 `
 */
 
+const PatientName = styled.p`
+    color: #00adef;
+    font-weight: bold;
+    margin: 0;
+`
+
 const VideoContainer = styled.div`
 height: 400px;
 width: 70%;
@@ -159,7 +171,8 @@ justify-content: center;
 
 const Content = styled.div`
   text-align: center;
-  background-color: #e5e5e5;
+  /* background-color: #e5e5e5; */
+  background-color: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

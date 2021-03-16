@@ -10,11 +10,11 @@ const jaws = {
     mandible,
 }
 
-const JawViewBox = () => {
+const JawViewBox = ({upper, lower}) => {
     return (
         <Flex>
-           <JawView name="Upper Aligners" jawImg={jaws.maxilla} />
-           <JawView name="Lower Aligners" jawImg={jaws.mandible} /> 
+           <JawView name="Upper Aligners" jawImg={jaws.maxilla} upperCount={upper} />
+           <JawView name="Lower Aligners" jawImg={jaws.mandible} lowerCount={lower} /> 
         </Flex>
     )
 }
@@ -24,8 +24,6 @@ display: flex;
 align-items: center;
 text-align: center;
 justify-content: space-between;
-margin-bottom: 2rem;
-margin-top: 2rem;
 `
 
 export default JawViewBox;

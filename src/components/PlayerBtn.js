@@ -45,7 +45,8 @@ const ViewIcon = styled.img`
     display: block;
     margin-left: 10px;
     margin-right: 10px;
-    filter: invert(38%) sepia(81%) saturate(4610%) hue-rotate(189deg) brightness(94%) contrast(101%);
+    filter: invert(47%) sepia(72%) saturate(2534%) hue-rotate(165deg) brightness(102%) contrast(101%);
+    /* filter: invert(38%) sepia(81%) saturate(4610%) hue-rotate(189deg) brightness(94%) contrast(101%); */
 `
 
 export default PlayerBtn;
