@@ -8,8 +8,8 @@ import EyeIcon from './EyeIcon'
 const JawView = ({name, jawImg, upperCount, lowerCount}) => {
     return (
         <Flex>
-            {upperCount ? <ViewLabel>{upperCount} {name} </ViewLabel> : null}
-            {lowerCount ? <ViewLabel>{lowerCount} {name} </ViewLabel> : null}
+            {upperCount ? <ViewLabel><ViewLabelSpan>{upperCount}</ViewLabelSpan> {name} </ViewLabel> : null}
+            {lowerCount ? <ViewLabel><ViewLabelSpan>{lowerCount}</ViewLabelSpan> {name} </ViewLabel> : null}
             <ViewIcon src={jawImg} />  
             {/* <EyeIcon /> */}
         </Flex>
@@ -24,11 +24,29 @@ align-items: center;
 justify-content: center;
 margin: 0 20px;
 `
+
+
 const ViewLabel = styled.p`
-font-size: 14px;
-    color: #324858;
-    font-weight: bold;
+    /* color: #00adef;
+    font-weight: bold; */
+    margin: 0;
+    font-size: 1rem;
 `
+
+const ViewLabelSpan = styled.span`
+    color: #00adef;
+    font-weight: bold;
+    margin: 0;
+    font-size: 1rem;
+`
+
+
+// const ViewLabel = styled.p`
+// font-size: 14px;
+//     color: #324858;
+//     font-weight: bold;
+// `
+
 const ViewIcon = styled.img`
     width: 43px;
     height: 40px;

@@ -8,19 +8,14 @@ const PlayerBtn = ({playerIcn, togglePlay, type, seekToStart, seekToEnd, seekOne
         <Flex onClick ={() => {
             if (type === 'start') {
                 seekToStart()
-                console.log('I love you start');
             } else if (type === 'play') {
-                console.log('I love you play');
                 togglePlay();
             } else if (type === 'end') {
-                seekToEnd()
-                console.log('I love you end');
+                seekToEnd()   
             } else if (type === 'rewind') {
-                seekOneSecBackward()
-                console.log('I love you rewind');
+                seekOneSecBackward()  
             } else if (type === 'forward') {
-                seekOneSecForward()
-                console.log('I love you forward');
+                seekOneSecForward()  
             }
             }}>
             <ViewIcon src={playerIcn} />  
@@ -43,8 +38,8 @@ const ViewIcon = styled.img`
     width: 25px;
     height: 40px;
     display: block;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
     filter: invert(47%) sepia(72%) saturate(2534%) hue-rotate(165deg) brightness(102%) contrast(101%);
     /* filter: invert(38%) sepia(81%) saturate(4610%) hue-rotate(189deg) brightness(94%) contrast(101%); */
 `

@@ -8,14 +8,15 @@ import JawViewBox from './JawViewsBox.js';
 import Logo from './Logo';
 import Views from './Views.js';
 import PlayerButtons from './PlayerButtons.js';
+import PatientInfo from './PatientInfo.js';
 
 
 function SinglePlan() {
     const [planData, setplanData] = useState(null);
-    //const [imageIndex, setImageIndex] = useState(0);
     const { slug } = useParams();
     const [view, setView] = useState('Front');
     const [isPlaying, setIsPlaying] = useState(false);
+    const [currentTab, setCurrentTab] = useState('videos')
     const player = useRef();
     useEffect(() => {
       sanityClient
@@ -23,6 +24,7 @@ function SinglePlan() {
           `*[slug.current == $slug]{
             caseNum,
             patientName,
+            patientSheet,
             upperCount,
             lowerCount,
             sequence {
@@ -42,6 +44,23 @@ function SinglePlan() {
                     asset->{url}
                     },
             },
+            beforeAfter {
+              front {
+                asset->{url}
+                },
+          left{
+                asset->{url}
+                },
+          right{
+                asset->{url}
+                },
+          upper{
+                asset->{url}
+                },
+          lower{
+                asset->{url}
+                },
+            },
                         slug
                      }`,
           { slug }
@@ -53,13 +72,49 @@ function SinglePlan() {
   
     if (!planData) return <div>Loading...</div>;
     
+    // Change the Tab function
+
+    const tabChanger = (tab) => {
+      setCurrentTab(tab)
+    }
+
+    // Change the View function
     const viewChanger = (viewName) => {
       setView(viewName)
     }
-    
+
+    // Aligners Count
     const upperAligners = planData.upperCount;
     const lowerAligners = planData.lowerCount;
 
+    // Patients Information
+    const patientName = planData.patientName;
+    const caseNum = planData.caseNum;
+    const patientSheet = planData.patientSheet;
+
+    // Video Existence Checking
+    let lowerVideo , upperVideo , rightVideo , leftVideo
+
+    if (planData.sequence.lower?.asset.url) {
+       lowerVideo = true;
+    } else {
+       lowerVideo = false
+    }
+    if (planData.sequence.upper?.asset.url) {
+      upperVideo = true;
+    } else {
+      upperVideo = false;
+    }
+    if (planData.sequence.right?.asset.url) {
+      rightVideo = true;
+    } else {
+      rightVideo = false;
+    }
+    if (planData.sequence.left?.asset.url) {
+      leftVideo = true;
+    } else {
+      leftVideo = false;
+    }
 
     let videoSrc;
     
@@ -75,6 +130,7 @@ function SinglePlan() {
       videoSrc = planData.sequence.lower.asset.url;
     }
 
+    // Video player Buttons functions
     const togglePlay = () => {
       setIsPlaying(!isPlaying)
     }
@@ -98,16 +154,19 @@ function SinglePlan() {
       setIsPlaying(false)
       const currentTime = player.current.getCurrentTime()
       player.current.seekTo(currentTime - 1, 'seconds');
-    }
+    } 
+
+    // JSX !!!
 
     return (
     <Content>
       <Logo />
-      {/* <p>Patient Name: {planData.patientName}</p> */}
       <Container>
-      <PatientName>Patient Name: {planData.patientName}</PatientName>
-      <Views currentView={view} viewChanger={viewChanger} />
-      
+      <PatientInfo name={patientName} caseNum={caseNum}  patientSheet={patientSheet} />
+{/* 
+      <Tabs currentTab={currentTab} tabChanger={tabChanger} /> */}
+
+      <Views upperVideo={upperVideo} lowerVideo={lowerVideo} leftVideo={leftVideo} rightVideo={rightVideo} currentView={view} viewChanger={viewChanger} />
       <VideoContainer>
         <ReactPlayer
          ref={player}
@@ -115,15 +174,9 @@ function SinglePlan() {
          controls={false} 
          onEnded={() => setIsPlaying(false)} 
          url={videoSrc} 
-
          width="100%" height="100%"
           />
       </VideoContainer>
-      
-      {/*
-      <VideoView source={planData.sequence.front.asset.url} />
-      <ImagePlan src={planData.front[0].asset.url} alt="f" />
-      */}
 
       <PlayerButtons 
       onPlayClick={togglePlay}
@@ -139,22 +192,6 @@ function SinglePlan() {
     );
 }
 
-
-/*
-const ImagePlan = styled.img`
-width: 50%;
-height: auto;
-@media (max-width: 768px) {
-        width: 100%;
-  }
-`
-*/
-
-const PatientName = styled.p`
-    color: #00adef;
-    font-weight: bold;
-    margin: 0;
-`
 
 const VideoContainer = styled.div`
 height: 400px;
