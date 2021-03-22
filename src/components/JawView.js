@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import EyeIcon from './EyeIcon'
 
 
 
@@ -11,7 +10,6 @@ const JawView = ({name, jawImg, upperCount, lowerCount}) => {
             {upperCount ? <ViewLabel><ViewLabelSpan>{upperCount}</ViewLabelSpan> {name} </ViewLabel> : null}
             {lowerCount ? <ViewLabel><ViewLabelSpan>{lowerCount}</ViewLabelSpan> {name} </ViewLabel> : null}
             <ViewIcon src={jawImg} />  
-            {/* <EyeIcon /> */}
         </Flex>
     )
 }

@@ -11,11 +11,11 @@ function Logo() {
     )
 }
 
-const Title = styled.h1`
-    color: #324858;
-    font-size: 100%;
-    text-transform: uppercase;
-`
+// const Title = styled.h1`
+//     color: #324858;
+//     font-size: 100%;
+//     text-transform: uppercase;
+// `
 
 const LogoImage = styled.img`
 width: 250px
