@@ -202,7 +202,6 @@ function SinglePlan() {
       </DataContainer>
       </>
       }
-
       <JawViewBox upper={upperAligners} lower={lowerAligners} />
       </Container>
     </Content>
