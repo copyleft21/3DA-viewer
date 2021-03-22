@@ -24,6 +24,7 @@ display: flex;
 align-items: center;
 text-align: center;
 justify-content: space-between;
+margin: 2rem;
 `
 
 export default JawViewBox;

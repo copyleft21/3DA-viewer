@@ -37,7 +37,7 @@ text-align: center;
 align-items: center;
 justify-content: center;
 filter: invert(47%) sepia(72%) saturate(2534%) hue-rotate(165deg) brightness(102%) contrast(101%);
-border: 1px solid #fff;
+/* border: 1px solid #fff; */
 border-radius: 5px;
 padding: 0 5px;
 margin: 20px 0 0px 0;

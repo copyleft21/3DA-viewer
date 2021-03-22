@@ -9,6 +9,7 @@ import Logo from './Logo';
 import Views from './Views.js';
 import PlayerButtons from './PlayerButtons.js';
 import PatientInfo from './PatientInfo.js';
+import Tabs from './Tabs.js';
 
 
 function SinglePlan() {
@@ -92,42 +93,48 @@ function SinglePlan() {
     const caseNum = planData.caseNum;
     const patientSheet = planData.patientSheet;
 
-    // Video Existence Checking
-    let lowerVideo , upperVideo , rightVideo , leftVideo
+    // Video Existence Checking Or Image Existence
+    let lowerView , upperView , rightView , leftView
 
-    if (planData.sequence.lower?.asset.url) {
-       lowerVideo = true;
+    if (planData.sequence.lower?.asset.url || planData.beforeAfter.lower?.asset.url ) {
+       lowerView = true;
     } else {
-       lowerVideo = false
+       lowerView = false
     }
-    if (planData.sequence.upper?.asset.url) {
-      upperVideo = true;
+    if (planData.sequence.upper?.asset.url || planData.beforeAfter.upper?.asset.url ) {
+      upperView = true;
     } else {
-      upperVideo = false;
+      upperView = false;
     }
-    if (planData.sequence.right?.asset.url) {
-      rightVideo = true;
+    if (planData.sequence.right?.asset.url || planData.beforeAfter.right?.asset.url) {
+      rightView = true;
     } else {
-      rightVideo = false;
+      rightView = false;
     }
-    if (planData.sequence.left?.asset.url) {
-      leftVideo = true;
+    if (planData.sequence.left?.asset.url || planData.beforeAfter.left?.asset.url) {
+      leftView = true;
     } else {
-      leftVideo = false;
+      leftView = false;
     }
 
-    let videoSrc;
+    let videoSrc, imgSrc;
     
     if (view === 'Front') {
       videoSrc = planData.sequence.front.asset.url;
+      imgSrc = planData.beforeAfter?.front.asset.url;
+
     } else if (view === 'Right') {
       videoSrc = planData.sequence.right.asset.url;
+      imgSrc = planData.beforeAfter?.right.asset.url;
     } else if (view === 'Left') {
       videoSrc = planData.sequence.left.asset.url;
+      imgSrc = planData.beforeAfter?.left.asset.url;
     } else if (view === 'Upper') {
       videoSrc = planData.sequence.upper.asset.url;
+      imgSrc = planData.beforeAfter?.upper.asset.url;
     } else if (view === 'Lower') {
       videoSrc = planData.sequence.lower.asset.url;
+      imgSrc = planData.beforeAfter?.lower.asset.url;
     }
 
     // Video player Buttons functions
@@ -163,29 +170,39 @@ function SinglePlan() {
       <Logo />
       <Container>
       <PatientInfo name={patientName} caseNum={caseNum}  patientSheet={patientSheet} />
-{/* 
-      <Tabs currentTab={currentTab} tabChanger={tabChanger} /> */}
+      <Tabs currentTab={currentTab} tabChanger={tabChanger} />
+      {currentTab === 'videos' ? 
+      <>
+            <Views upperView={upperView} lowerView={lowerView} leftView={leftView} rightView={rightView} currentView={view} viewChanger={viewChanger} />
+            <DataContainer>
+              <ReactPlayer
+               ref={player}
+               playing={isPlaying} 
+               controls={false} 
+               onEnded={() => setIsPlaying(false)} 
+               url={videoSrc} 
+               width="100%" height="100%"
+                />
+            </DataContainer>
+      
+            <PlayerButtons 
+            onPlayClick={togglePlay}
+            playing={isPlaying}
+            seekToStart={seekToStart}
+            seekToEnd={seekToEnd}
+            seekOneSecForward={seekOneSecForward}
+            seekOneSecBackward={seekOneSecBackward}
+            />
+            </>
+      : 
+      <>
+      <Views upperView={upperView} lowerView={lowerView} leftView={leftView} rightView={rightView} currentView={view} viewChanger={viewChanger} />
+      <DataContainer>
+      <DataImage src={imgSrc} alt=''/>
+      </DataContainer>
+      </>
+      }
 
-      <Views upperVideo={upperVideo} lowerVideo={lowerVideo} leftVideo={leftVideo} rightVideo={rightVideo} currentView={view} viewChanger={viewChanger} />
-      <VideoContainer>
-        <ReactPlayer
-         ref={player}
-         playing={isPlaying} 
-         controls={false} 
-         onEnded={() => setIsPlaying(false)} 
-         url={videoSrc} 
-         width="100%" height="100%"
-          />
-      </VideoContainer>
-
-      <PlayerButtons 
-      onPlayClick={togglePlay}
-      playing={isPlaying}
-      seekToStart={seekToStart}
-      seekToEnd={seekToEnd}
-      seekOneSecForward={seekOneSecForward}
-      seekOneSecBackward={seekOneSecBackward}
-      />
       <JawViewBox upper={upperAligners} lower={lowerAligners} />
       </Container>
     </Content>
@@ -193,9 +210,9 @@ function SinglePlan() {
 }
 
 
-const VideoContainer = styled.div`
+const DataContainer = styled.div`
 height: 400px;
-width: 70%;
+width: 90%;
 display: flex; 
 flex-direction: column;
 align-items: center;
@@ -204,6 +221,11 @@ justify-content: center;
         width: 100%;
         height: auto;
   }
+`
+
+const DataImage = styled.img`
+max-height: 100%;
+width: 100%;
 `
 
 const Content = styled.div`

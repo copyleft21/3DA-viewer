@@ -18,7 +18,7 @@ const Title = styled.h1`
 `
 
 const LogoImage = styled.img`
-width: 150px
+width: 250px
 `
 const Wrapper = styled.div`
 margin : 20px 0;

@@ -1,40 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const TabOption = ({type, tabChanger}) => {
-    let text
-    if (type === 'images') {
-        text = 'Before & After'
-    } else {
-        text = 'Video Sequence'
-    }
-        return (<Option onClick={tabChanger(type)}>{text}</Option>)
-}
-
-const TabOptionActive = ({type}) => {
-    let text
-    if (type === 'images') {
-        text = 'Before & After'
-    } else {
-        text = 'Video Sequence'
-    }
-        return (<OptionActive>{text}</OptionActive>)
-
-}
 
 const Tabs = ({currentTab, tabChanger}) => {
     if (currentTab === 'videos') {
         return (
             <Flex>
-            <TabOptionActive type={currentTab} /> 
-            <TabOption type="images" currentTab={currentTab} tabChanger={tabChanger} />
+            <OptionActive >Video Sequence</OptionActive> 
+            <Option onClick={() => {tabChanger('images')}}>Before & After</Option>
             </Flex>
         )
     } else if (currentTab === 'images') {
         return (
         <Flex>
-        <TabOption type="videos" currentTab={currentTab} tabChanger={tabChanger} /> 
-        <TabOptionActive type={currentTab} />
+        <Option onClick={() =>{tabChanger('videos')}}>Video Sequence</Option> 
+        <OptionActive>Before & After</OptionActive>
         </Flex>
         )
     }
@@ -43,29 +23,30 @@ const Tabs = ({currentTab, tabChanger}) => {
 const Option = styled.div`
     color: #00adef;
     font-weight: bold;
-    margin: 0 10px;
     font-size: 1rem;
     cursor: pointer;
+    padding: 10px;
+    opacity: .5;
+    vertical-align: middle;
 `
 const OptionActive = styled.div`
     color: #00adef;
     font-weight: bold;
-    margin: 0 10px;
     font-size: 1rem;
+    padding: 10px;
+    background-color: #e0f0f8;
+    border-radius: 20px;
+    vertical-align: middle;
 `
 
 const Flex = styled.div`
-border-radius: 10px;
-padding-left: .4vw;
-padding-right: .4vw;
-background-color: #e0f0f8;
-display: flex;
-align-items: center;
-text-align: center;
-justify-content: space-between;
+border-radius: 20px;
+border: 1px solid #00adef;
+display: grid;
+grid-template-columns: 1fr 1fr;
 margin-bottom: 2rem;
 margin-top: 2rem;
-padding: 10px 0;
+/* padding: 10px 0; */
 `
 
 export default Tabs;
