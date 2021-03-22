@@ -5,7 +5,7 @@ import SinglePlan from "./components/SinglePlan";
 function App() {
   return (
     <BrowserRouter>
-        <Route component={SinglePlan} path="/:slug" />
+        <Route component={SinglePlan} path="/plans/:slug" />
     </BrowserRouter>
   );
 }
