@@ -148,13 +148,13 @@ function SinglePlan() {
     }
     const seekToEnd = async () => {
       await player.current.seekTo(.999, 'fraction');
-      setIsPlaying(false)
+      // setIsPlaying(false)
     }
 
     const seekOneSecForward = async () => {
       const currentTime = player.current.getCurrentTime()
       await player.current.seekTo(currentTime + 1 , 'seconds');
-      setIsPlaying(false)
+      // setIsPlaying(false)
     }
 
     const seekOneSecBackward = () => {
@@ -182,6 +182,7 @@ function SinglePlan() {
                onEnded={() => setIsPlaying(false)} 
                url={videoSrc} 
                width="100%" height="100%"
+               loop={false}
                 />
             </DataContainer>
       
