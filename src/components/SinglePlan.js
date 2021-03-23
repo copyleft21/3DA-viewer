@@ -147,7 +147,7 @@ function SinglePlan() {
       player.current.seekTo(0);
     }
     const seekToEnd = async () => {
-      await player.current.seekTo(.999, 'fraction');
+      await player.current.seekTo(.99, 'fraction');
       // setIsPlaying(false)
     }
 
