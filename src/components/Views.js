@@ -39,7 +39,8 @@ const Views = ({currentView, viewChanger, upperView, lowerView, rightView, leftV
                 {leftView  ? <ViewButton key='left' activeIcon={activeIcons.leftActive} disabledIcon={disabledIcons.leftDisabled} name="Left" viewChanger={viewChanger} /> : null }  
                 <ViewButton key='front'  activeIcon={activeIcons.frontActive} disabledIcon={disabledIcons.frontDisabled} name="Front" viewChanger={viewChanger} />
                 {rightView  ? <ViewButton key='right' activeIcon={activeIcons.rightActive} disabledIcon={disabledIcons.rightDisabled} name="Right" viewChanger={viewChanger} /> : null }  
-                <ViewButton key='lower' activeIcon={activeIcons.lowerActive} disabledIcon={disabledIcons.lowerDisabled} name="Lower" viewChanger={viewChanger} />
+                {lowerView  ? <ViewButton key='lower' activeIcon={activeIcons.lowerActive} disabledIcon={disabledIcons.lowerDisabled} name="Lower" viewChanger={viewChanger} /> : null }  
+                
             </ViewFlex>
             )
         }
@@ -79,7 +80,7 @@ const Views = ({currentView, viewChanger, upperView, lowerView, rightView, leftV
         } else if (currentView === 'Lower') {
             return (
                 <ViewFlex>
-                <ViewButton key='upper' activeIcon={activeIcons.upperActive} disabledIcon={disabledIcons.upperDisabled} name="Upper" viewChanger={viewChanger} />
+                {upperView  ? <ViewButton key='upper' activeIcon={activeIcons.upperActive} disabledIcon={disabledIcons.upperDisabled} name="Upper" viewChanger={viewChanger} /> : null }
                 {leftView  ? <ViewButton key='left' activeIcon={activeIcons.leftActive} disabledIcon={disabledIcons.leftDisabled} name="Left" viewChanger={viewChanger} /> : null }  
                 <ViewButton key='front' activeIcon={activeIcons.frontActive} disabledIcon={disabledIcons.frontDisabled} name="Front"  viewChanger={viewChanger}/>
                 {rightView  ? <ViewButton key='right' activeIcon={activeIcons.rightActive} disabledIcon={disabledIcons.rightDisabled} name="Right" viewChanger={viewChanger} /> : null } 
