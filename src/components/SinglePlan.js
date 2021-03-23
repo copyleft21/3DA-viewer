@@ -146,15 +146,15 @@ function SinglePlan() {
       setIsPlaying(false)
       player.current.seekTo(0);
     }
-    const seekToEnd = () => {
+    const seekToEnd = async () => {
       setIsPlaying(false)
-      player.current.seekTo(1, 'fraction');
+      await player.current.seekTo(1, 'fraction');
     }
 
-    const seekOneSecForward = () => {
+    const seekOneSecForward = async () => {
       setIsPlaying(false)
       const currentTime = player.current.getCurrentTime()
-      player.current.seekTo(currentTime + 1 , 'seconds');
+      await player.current.seekTo(currentTime + 1 , 'seconds');
     }
 
     const seekOneSecBackward = () => {
