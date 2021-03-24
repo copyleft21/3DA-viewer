@@ -7,9 +7,21 @@ import styled from 'styled-components'
 const JawView = ({name, jawImg, upperCount, lowerCount}) => {
     return (
         <Flex>
-            {upperCount ? <ViewLabel><ViewLabelSpan>{upperCount}</ViewLabelSpan> {name} </ViewLabel> : null}
-            {lowerCount ? <ViewLabel><ViewLabelSpan>{lowerCount}</ViewLabelSpan> {name} </ViewLabel> : null}
-            <ViewIcon src={jawImg} />  
+           
+            {upperCount ? 
+            <>
+            <ViewLabel><ViewLabelSpan>{upperCount}</ViewLabelSpan> {name} </ViewLabel>
+            <ViewIcon src={jawImg} /> 
+            </>
+            : null}
+           
+            {lowerCount ? 
+            <>
+            <ViewLabel><ViewLabelSpan>{lowerCount}</ViewLabelSpan> {name} </ViewLabel>
+            <ViewIcon src={jawImg} /> 
+            </>
+            : null}
+             
         </Flex>
     )
 }

@@ -28,6 +28,10 @@ function SinglePlan() {
             patientSheet,
             upperCount,
             lowerCount,
+            estimatedTime,
+  					logo {
+              asset->{url}
+                 },		
             sequence {
               front {
                     asset->{url}
@@ -92,6 +96,11 @@ function SinglePlan() {
     const patientName = planData.patientName;
     const caseNum = planData.caseNum;
     const patientSheet = planData.patientSheet;
+
+    // Logo
+    const logoLink = planData.logo?.asset.url;
+    const estimatedTime = planData.estimatedTime;
+
 
     // Video Existence Checking Or Image Existence
     let lowerView , upperView , rightView , leftView
@@ -167,7 +176,7 @@ function SinglePlan() {
 
     return (
     <Content>
-      <Logo />
+      <Logo logo={logoLink} />
       <Container>
       <PatientInfo name={patientName} caseNum={caseNum}  patientSheet={patientSheet} />
       <Tabs currentTab={currentTab} tabChanger={tabChanger} />
@@ -203,6 +212,7 @@ function SinglePlan() {
       </DataContainer>
       </>
       }
+      {estimatedTime ? <Estimated>Estimated treatment time: <EstimatedSpan>{estimatedTime}</EstimatedSpan> months</Estimated> : null}
       <JawViewBox upper={upperAligners} lower={lowerAligners} />
       </Container>
     </Content>
@@ -240,6 +250,22 @@ const Content = styled.div`
   font-size: calc(10px + 2vmin);
   color: black;
 `
+
+
+const Estimated = styled.p`
+    /* color: #00adef;
+    font-weight: bold; */
+    margin: 0;
+    font-size: 1rem;
+`
+
+const EstimatedSpan = styled.span`
+    color: #00adef;
+    font-weight: bold;
+    margin: 0;
+    font-size: 1rem;
+`
+
 
 
 export default SinglePlan;

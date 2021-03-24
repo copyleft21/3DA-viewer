@@ -13,14 +13,15 @@ const jaws = {
 const JawViewBox = ({upper, lower}) => {
     return (
         <Flex>
-           <JawView name="Upper Aligners" jawImg={jaws.maxilla} upperCount={upper} />
-           <JawView name="Lower Aligners" jawImg={jaws.mandible} lowerCount={lower} /> 
+           {upper ? <JawView name="Upper Aligners" jawImg={jaws.maxilla} upperCount={upper} /> : null}
+           {lower ? <JawView name="Lower Aligners" jawImg={jaws.mandible} lowerCount={lower} /> : null }
         </Flex>
     )
 }
 
 const Flex = styled.div`
-display: flex;
+display: grid;
+grid-auto-flow: column;
 align-items: center;
 text-align: center;
 justify-content: space-between;

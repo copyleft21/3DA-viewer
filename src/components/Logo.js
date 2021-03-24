@@ -1,21 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from '../assets/imgs/logo.png'
+// import logo from '../assets/imgs/logo.png'
 
-function Logo() {
+function Logo({logo}) {
     return (
         <Wrapper>
-        <LogoImage src={logo} alt="3DA Logo" />
+            {logo ? <LogoImage src={logo} alt="3DA Logo" /> : null }
         {/* <Title>3DA smile analysis</Title> */}
         </Wrapper>
     )
 }
-
-// const Title = styled.h1`
-//     color: #324858;
-//     font-size: 100%;
-//     text-transform: uppercase;
-// `
 
 const LogoImage = styled.img`
 width: 250px
