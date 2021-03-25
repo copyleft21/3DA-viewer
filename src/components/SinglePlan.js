@@ -212,7 +212,7 @@ function SinglePlan() {
       </DataContainer>
       </>
       }
-      {estimatedTime ? <Estimated>Estimated treatment time: <EstimatedSpan>{estimatedTime}</EstimatedSpan> weeks</Estimated> : null}
+      {estimatedTime ? <Estimated>Estimated treatment time: <EstimatedSpan>{estimatedTime}</EstimatedSpan> months</Estimated> : null}
       <JawViewBox upper={upperAligners} lower={lowerAligners} />
       </Container>
     </Content>
