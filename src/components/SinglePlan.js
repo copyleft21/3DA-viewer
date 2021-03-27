@@ -258,7 +258,7 @@ const CopyRightText = styled.p`
     /* color: #00adef;
     font-weight: bold; */
     margin: 1rem;
-    font-size: 1rem;
+    font-size: .8rem;
 `
 
 const Estimated = styled.p`
