@@ -215,10 +215,14 @@ function SinglePlan() {
       {estimatedTime ? <Estimated>Estimated treatment time: <EstimatedSpan>{estimatedTime}</EstimatedSpan> months</Estimated> : null}
       <JawViewBox upper={upperAligners} lower={lowerAligners} />
       </Container>
+      <CopyRightText>3DA © 2021 - Designed by: <FooterLink href="https://github.com/Moayyad-Zakkar">Moayyad Zakkar</FooterLink></CopyRightText>
     </Content>
     );
 }
 
+const FooterLink = styled.a`
+/* text-decoration: none; */
+`
 
 const DataContainer = styled.div`
 height: 400px;
@@ -250,7 +254,12 @@ const Content = styled.div`
   font-size: calc(10px + 2vmin);
   color: black;
 `
-
+const CopyRightText = styled.p`
+    /* color: #00adef;
+    font-weight: bold; */
+    margin: 1rem;
+    font-size: 1rem;
+`
 
 const Estimated = styled.p`
     /* color: #00adef;
